@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import { CreditCard, Shield, User, Sparkles, LogOut, PlusCircle } from "lucide-react";
 import { AuthModal } from "./AuthModal";
 

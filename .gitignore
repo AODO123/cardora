@@ -9,10 +9,15 @@
 .env
 .env.local
 .env.production
+.env.*.local
 dev.db
 dev.db-journal
 *.db
 *.sqlite
+
+# uploaded card photos (keep folder)
+/public/uploads/*
+!/public/uploads/.gitkeep
 
 # IDE & OS
 .DS_Store

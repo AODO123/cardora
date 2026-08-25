@@ -20,7 +20,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
       where: { id: params.id },
       data: {
         name: data.name,
-        photoUrl: data.photoUrl,
+        photoData: data.photoData,
         country: data.country,
         status: data.status,
         title: data.title,

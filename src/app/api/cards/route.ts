@@ -57,7 +57,7 @@ export async function POST(req: Request) {
         userId: user.id,
         slug,
         name: data.name || "Untitled Card",
-        photoUrl: data.photoUrl || null,
+        photoData: data.photoData || null,
         country: data.country || "United States",
         status: data.status || "Professional",
         title: data.title || "Title",

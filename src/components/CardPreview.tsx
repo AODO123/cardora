@@ -21,7 +21,7 @@ export interface CardData {
   id?: string;
   slug?: string;
   name: string;
-  photoUrl?: string | null;
+  photoData?: string | null;
   country: string;
   status: string;
   title: string;
@@ -105,9 +105,9 @@ export function CardPreview({
       {/* Top Banner / Avatar Header */}
       <div className="flex flex-col items-center text-center relative z-10">
         <div className="relative mb-4">
-          {card.photoUrl ? (
+          {card.photoData ? (
             <img
-              src={card.photoUrl}
+              src={card.photoData}
               alt={card.name || "Card photo"}
               className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-slate-800/80 shadow-xl"
             />

@@ -230,8 +230,8 @@ export default function DashboardPage() {
                     </div>
 
                     <div className="flex items-center gap-3">
-                      {c.photoUrl ? (
-                        <img src={c.photoUrl} alt={c.name} className="w-12 h-12 rounded-full object-cover border border-slate-700" />
+                      {c.photoData ? (
+                        <img src={c.photoData} alt={c.name} className="w-12 h-12 rounded-full object-cover border border-slate-700" />
                       ) : (
                         <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-purple-600 to-rose-500 text-white font-bold text-xl flex items-center justify-center">
                           {c.name.charAt(0)}

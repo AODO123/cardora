@@ -1,23 +1,18 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, useRef, useCallback, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CardPreview, CardData } from "@/components/CardPreview";
 import { CARD_THEMES } from "@/lib/themes";
 import {
-  User,
-  Share2,
   Sparkles,
-  Palette,
   CheckCircle2,
   AlertCircle,
   Save,
-  Globe,
-  Instagram,
-  Linkedin,
-  Radio,
+  Upload,
+  Trash2,
   ArrowLeft,
   Lock,
 } from "lucide-react";
@@ -33,11 +28,14 @@ function EditorContent() {
   const [error, setError] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const [limitReached, setLimitReached] = useState(false);
+  const [uploadingPhoto, setUploadingPhoto] = useState(false);
+  const [isDraggingPhoto, setIsDraggingPhoto] = useState(false);
+  const photoInputRef = useRef<HTMLInputElement>(null);
 
   // Form State initialized with defaults
   const [formData, setFormData] = useState<CardData>({
     name: "Alex Rivera",
-    photoUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
+    photoData: "",
     country: "United States",
     status: "Professional",
     title: "Senior Product Designer",
@@ -82,6 +80,45 @@ function EditorContent() {
   const handleChange = (field: keyof CardData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
+
+  const handlePhotoFile = useCallback(async (file: File | undefined) => {
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      setError("Please choose an image file (JPG, PNG, WEBP, or GIF).");
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      setError("Image must be 5MB or smaller.");
+      return;
+    }
+
+    setError("");
+    setUploadingPhoto(true);
+
+    try {
+      const payload = new FormData();
+      payload.append("file", file);
+
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: payload,
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to upload photo.");
+      }
+
+      setFormData((prev) => ({ ...prev, photoData: data.url }));
+    } catch (err: any) {
+      setError(err.message || "Failed to upload photo.");
+    } finally {
+      setUploadingPhoto(false);
+      if (photoInputRef.current) photoInputRef.current.value = "";
+    }
+  }, []);
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -292,28 +329,87 @@ function EditorContent() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Country</label>
-                    <input
-                      type="text"
-                      placeholder="United States"
-                      value={formData.country}
-                      onChange={(e) => handleChange("country", e.target.value)}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
-                    />
-                  </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1">Country</label>
+                  <input
+                    type="text"
+                    placeholder="United States"
+                    value={formData.country}
+                    onChange={(e) => handleChange("country", e.target.value)}
+                    className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
+                  />
+                </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Photo URL</label>
+                <div>
+                    <label className="block text-xs font-semibold text-slate-300 mb-1">Profile Photo</label>
                     <input
-                      type="url"
-                      placeholder="https://images.unsplash.com/..."
-                      value={formData.photoUrl || ""}
-                      onChange={(e) => handleChange("photoUrl", e.target.value)}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
+                      ref={photoInputRef}
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,image/gif"
+                      className="hidden"
+                      onChange={(e) => handlePhotoFile(e.target.files?.[0])}
                     />
-                  </div>
+                    {formData.photoData ? (
+                      <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-900 border border-slate-800">
+                        <img
+                          src={formData.photoData}
+                          alt="Profile preview"
+                          className="w-14 h-14 rounded-full object-cover border border-slate-700 shrink-0"
+                        />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs font-semibold text-white truncate">Photo uploaded</p>
+                          <p className="text-[11px] text-slate-500">JPG, PNG, WEBP, or GIF · max 5MB</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => photoInputRef.current?.click()}
+                          disabled={uploadingPhoto}
+                          className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-bold text-slate-200 shrink-0"
+                        >
+                          Change
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleChange("photoData", "")}
+                          disabled={uploadingPhoto}
+                          className="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 shrink-0"
+                          aria-label="Remove photo"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => photoInputRef.current?.click()}
+                        onDragOver={(e) => {
+                          e.preventDefault();
+                          setIsDraggingPhoto(true);
+                        }}
+                        onDragLeave={() => setIsDraggingPhoto(false)}
+                        onDrop={(e) => {
+                          e.preventDefault();
+                          setIsDraggingPhoto(false);
+                          handlePhotoFile(e.dataTransfer.files?.[0]);
+                        }}
+                        disabled={uploadingPhoto}
+                        className={`w-full py-6 px-4 rounded-xl border-2 border-dashed text-center transition-colors ${
+                          isDraggingPhoto
+                            ? "border-rose-500 bg-rose-500/10"
+                            : "border-slate-700 bg-slate-900 hover:border-rose-500/50"
+                        }`}
+                      >
+                        {uploadingPhoto ? (
+                          <span className="text-xs text-rose-300 font-semibold">Uploading photo...</span>
+                        ) : (
+                          <>
+                            <Upload className="w-5 h-5 text-rose-400 mx-auto mb-1.5" />
+                            <span className="block text-xs font-semibold text-white">Click or drop a photo</span>
+                            <span className="block text-[11px] text-slate-500 mt-0.5">JPG, PNG, WEBP, or GIF · max 5MB</span>
+                          </>
+                        )}
+                      </button>
+                    )}
                 </div>
 
                 <div>

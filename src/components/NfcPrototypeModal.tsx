@@ -26,7 +26,7 @@ const DEFAULT_NFC_DEMO_CARD: CardData = {
   id: "demo-nfc-card",
   slug: "alex-rivera",
   name: "Alex Rivera",
-  photoUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
+  photoData: "",
   country: "United States",
   status: "Professional",
   title: "Head of Product @ TechCorp",

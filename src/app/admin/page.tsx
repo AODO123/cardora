@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CardoraLogo } from "@/components/CardoraLogo";
@@ -20,6 +20,7 @@ import {
   X,
   Save,
   LogOut,
+  Upload,
 } from "lucide-react";
 
 export default function AdminPage() {
@@ -38,6 +39,8 @@ export default function AdminPage() {
 
   // Edit Modal State
   const [editingCard, setEditingCard] = useState<any | null>(null);
+  const [uploadingPhoto, setUploadingPhoto] = useState(false);
+  const photoInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     checkAdminSession();
@@ -117,6 +120,28 @@ export default function AdminPage() {
       }
     } catch (e) {
       console.error(e);
+    }
+  };
+
+  const handleAdminPhotoFile = async (file: File | undefined) => {
+    if (!file || !editingCard) return;
+    if (!file.type.startsWith("image/")) return;
+    if (file.size > 5 * 1024 * 1024) return;
+
+    setUploadingPhoto(true);
+    try {
+      const payload = new FormData();
+      payload.append("file", file);
+      const res = await fetch("/api/upload", { method: "POST", body: payload });
+      const data = await res.json();
+      if (res.ok && data.url) {
+        setEditingCard({ ...editingCard, photoData: data.url });
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setUploadingPhoto(false);
+      if (photoInputRef.current) photoInputRef.current.value = "";
     }
   };
 
@@ -352,8 +377,8 @@ export default function AdminPage() {
                       <tr key={c.id} className="hover:bg-slate-900/50 transition-colors">
                         <td className="p-4">
                           <div className="flex items-center gap-3">
-                            {c.photoUrl ? (
-                              <img src={c.photoUrl} alt={c.name} className="w-9 h-9 rounded-full object-cover border border-slate-700" />
+                            {c.photoData ? (
+                              <img src={c.photoData} alt={c.name} className="w-9 h-9 rounded-full object-cover border border-slate-700" />
                             ) : (
                               <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-purple-500 to-rose-500 text-white font-bold flex items-center justify-center">
                                 {c.name.charAt(0)}
@@ -473,6 +498,54 @@ export default function AdminPage() {
             </div>
 
             <form onSubmit={handleSaveEditCard} className="space-y-3 text-xs">
+              <div>
+                <label className="block text-slate-300 mb-1">Profile Photo</label>
+                <input
+                  ref={photoInputRef}
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/gif"
+                  className="hidden"
+                  onChange={(e) => handleAdminPhotoFile(e.target.files?.[0])}
+                />
+                {editingCard.photoData ? (
+                  <div className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                    <img
+                      src={editingCard.photoData}
+                      alt="Card photo"
+                      className="w-12 h-12 rounded-full object-cover border border-slate-700 shrink-0"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => photoInputRef.current?.click()}
+                      disabled={uploadingPhoto}
+                      className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-bold text-slate-200"
+                    >
+                      {uploadingPhoto ? "Uploading..." : "Change"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setEditingCard({ ...editingCard, photoData: "" })}
+                      className="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400"
+                      aria-label="Remove photo"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => photoInputRef.current?.click()}
+                    disabled={uploadingPhoto}
+                    className="w-full py-4 rounded-xl border-2 border-dashed border-slate-700 bg-slate-900 hover:border-rose-500/50 text-center"
+                  >
+                    <Upload className="w-4 h-4 text-rose-400 mx-auto mb-1" />
+                    <span className="text-[11px] font-semibold text-slate-300">
+                      {uploadingPhoto ? "Uploading..." : "Upload photo"}
+                    </span>
+                  </button>
+                )}
+              </div>
+
               <div>
                 <label className="block text-slate-300 mb-1">Name</label>
                 <input

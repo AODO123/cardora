@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -28,7 +28,7 @@ model Card {
   
   // Basic Card Info
   name          String
-  photoUrl      String?
+  photoData     String?  // base64 encoded image data
   country       String   @default("United States")
   status        String   @default("Professional") // "Student" | "Professional" | "Freelancer"
   title         String   // Job title or grade

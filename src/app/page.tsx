@@ -62,6 +62,19 @@ const HERO_DEMO_CARDS: CardData[] = [
 
 export default function LandingPage() {
   const [showNfcModal, setShowNfcModal] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const goToCard = (index: number) => {
+    setCurrentIndex(index);
+  };
+
+  const nextCard = () => {
+    setCurrentIndex((prev) => (prev + 1) % HERO_DEMO_CARDS.length);
+  };
+
+  const prevCard = () => {
+    setCurrentIndex((prev) => (prev - 1 + HERO_DEMO_CARDS.length) % HERO_DEMO_CARDS.length);
+  };
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-rose-500 selection:text-white">
@@ -132,8 +145,22 @@ export default function LandingPage() {
             {/* Hero Right — Fanned 2-3 Digital Cards with Floating Idle Animation */}
             <div className="lg:col-span-5 relative flex items-center justify-center py-8">
               <div className="relative w-full max-w-sm sm:max-w-md h-[460px] flex items-center justify-center">
-                
-                {/* Background Card 3 (Maya Lin) */}
+
+                {/* Navigation Dots */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-2 z-30">
+                  {HERO_DEMO_CARDS.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => goToCard(idx)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        idx === currentIndex ? "bg-rose-500 w-6" : "bg-slate-600 hover:bg-slate-500"
+                      }`}
+                      aria-label={`Go to card ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+
+                {/* Background Card (Previous in sequence) */}
                 <motion.div
                   animate={{
                     y: [-8, 8, -8],
@@ -144,12 +171,13 @@ export default function LandingPage() {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="absolute top-4 left-0 w-72 sm:w-80 pointer-events-none scale-90 opacity-60 filter blur-[0.5px]"
+                  className="absolute top-4 left-0 w-72 sm:w-80 scale-90 opacity-60 filter blur-[0.5px] cursor-pointer"
+                  onClick={prevCard}
                 >
-                  <CardPreview card={HERO_DEMO_CARDS[2]} isInteractive={false} />
+                  <CardPreview card={HERO_DEMO_CARDS[(currentIndex - 1 + HERO_DEMO_CARDS.length) % HERO_DEMO_CARDS.length]} isInteractive={false} />
                 </motion.div>
 
-                {/* Background Card 2 (Marcus Chen) */}
+                {/* Background Card (Next in sequence) */}
                 <motion.div
                   animate={{
                     y: [8, -8, 8],
@@ -161,24 +189,30 @@ export default function LandingPage() {
                     ease: "easeInOut",
                     delay: 1,
                   }}
-                  className="absolute top-2 right-0 w-72 sm:w-80 pointer-events-none scale-95 opacity-80"
+                  className="absolute top-2 right-0 w-72 sm:w-80 scale-95 opacity-80 cursor-pointer"
+                  onClick={nextCard}
                 >
-                  <CardPreview card={HERO_DEMO_CARDS[1]} isInteractive={false} />
+                  <CardPreview card={HERO_DEMO_CARDS[(currentIndex + 1) % HERO_DEMO_CARDS.length]} isInteractive={false} />
                 </motion.div>
 
-                {/* Foreground Primary Card 1 (Elena Rostova) */}
+                {/* Foreground Primary Card */}
                 <motion.div
                   animate={{
                     y: [-6, 6, -6],
+                    scale: [1, 1.02, 1],
                   }}
                   transition={{
                     duration: 5,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="relative z-20 w-80 sm:w-88 shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+                  className="relative z-20 w-80 sm:w-88 shadow-[0_20px_50px_rgba(0,0,0,0.8)] cursor-pointer"
+                  onClick={nextCard}
                 >
-                  <CardPreview card={HERO_DEMO_CARDS[0]} isInteractive={false} />
+                  <CardPreview card={HERO_DEMO_CARDS[currentIndex]} isInteractive={false} />
+                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-rose-500/90 text-white text-[10px] font-bold px-3 py-1 rounded-full opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
+                    Click to preview
+                  </div>
                 </motion.div>
               </div>
             </div>

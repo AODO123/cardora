@@ -171,8 +171,7 @@ export default function LandingPage() {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="absolute top-4 left-0 w-72 sm:w-80 cursor-pointer scale-90 opacity-60 filter blur-[1px]"
-                  onClick={prevCard}
+                  className="absolute top-4 left-0 w-72 sm:w-80 cursor-pointer scale-90 opacity-50 filter blur-[2px] pointer-events-none"
                 >
                   <CardPreview card={HERO_DEMO_CARDS[(currentIndex - 1 + HERO_DEMO_CARDS.length) % HERO_DEMO_CARDS.length]} isInteractive={false} />
                 </motion.div>
@@ -189,8 +188,7 @@ export default function LandingPage() {
                     ease: "easeInOut",
                     delay: 1,
                   }}
-                  className="absolute top-2 right-0 w-72 sm:w-80 cursor-pointer scale-95 opacity-80 filter blur-[1px]"
-                  onClick={nextCard}
+                  className="absolute top-2 right-0 w-72 sm:w-80 cursor-pointer scale-95 opacity-70 filter blur-[2px] pointer-events-none"
                 >
                   <CardPreview card={HERO_DEMO_CARDS[(currentIndex + 1) % HERO_DEMO_CARDS.length]} isInteractive={false} />
                 </motion.div>

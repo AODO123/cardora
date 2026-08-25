@@ -188,7 +188,7 @@ export default function LandingPage() {
                     ease: "easeInOut",
                     delay: 1,
                   }}
-                  className="absolute top-2 right-0 w-72 sm:w-80 pointer-events-none scale-95 opacity-80 filter blur-[0.5px]"
+                  className="absolute top-2 right-0 w-72 sm:w-80 pointer-events-none scale-90 opacity-60 filter blur-[0.5px]"
                 >
                   <CardPreview card={HERO_DEMO_CARDS[(currentIndex + 1) % HERO_DEMO_CARDS.length]} isInteractive={false} />
                 </motion.div>

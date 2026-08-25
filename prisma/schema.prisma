@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  passwordHash String
+  name         String
+  plan         String     @default("FREE") // "FREE" | "PAID"
+  role         String     @default("USER") // "USER" | "ADMIN"
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  cards        Card[]
+  auditLogs    AuditLog[]
+}
+
+model Card {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Basic Card Info
+  name          String
+  photoUrl      String?
+  country       String   @default("United States")
+  status        String   @default("Professional") // "Student" | "Professional" | "Freelancer"
+  title         String   // Job title or grade
+  bio           String   // About me
+  
+  // Social Handles
+  instagram     String?
+  discord       String?
+  linkedin      String?
+  tiktok        String?
+  website       String?
+  
+  // Optional "More About Me" (NO DOB OR AGE)
+  mbti          String?
+  interests     String?
+  favoriteSong  String?
+  favoriteMovie String?
+  
+  // Customization
+  theme         String   @default("midnight-glass")
+  primaryColor  String   @default("#a3e635")
+  
+  // Analytics
+  views         Int      @default(0)
+  linkClicks    Int      @default(0)
+  saves         Int      @default(0)
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model AuditLog {
+  id           String   @id @default(cuid())
+  adminId      String
+  admin        User     @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  action       String   // e.g. "DELETE_CARD", "EDIT_CARD", "UPDATE_PLAN"
+  targetCardId String?
+  targetUserId String?
+  details      String
+  createdAt    DateTime @default(now())
+}

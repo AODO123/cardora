@@ -142,12 +142,12 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Hero Right — Fanned 2-3 Digital Cards with Floating Idle Animation */}
+            {/* Hero Right — Fanned 3 Digital Cards with Click to Cycle */}
             <div className="lg:col-span-5 relative flex items-center justify-center py-8">
-              <div className="relative w-full max-w-sm sm:max-w-md h-[460px] flex items-center justify-center">
+              <div className="relative w-full max-w-sm sm:max-w-md h-[460px]">
 
                 {/* Navigation Dots */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-2 z-30">
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-30">
                   {HERO_DEMO_CARDS.map((_, idx) => (
                     <button
                       key={idx}
@@ -160,60 +160,73 @@ export default function LandingPage() {
                   ))}
                 </div>
 
-                {/* Background Card (Previous in sequence) */}
+                {/* All 3 Cards - Always Visible in Fanned Layout */}
+                {/* Card 0 - Left/Back */}
                 <motion.div
                   animate={{
                     y: [-8, 8, -8],
-                    rotate: [-8, -4, -8],
+                    rotate: [-6, -3, -6],
+                    x: currentIndex === 0 ? 0 : -20,
+                    opacity: currentIndex === 0 ? 0.5 : 0.7,
+                    scale: currentIndex === 0 ? 0.85 : 0.9,
                   }}
                   transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
+                    duration: 0.4,
+                    ease: "easeOut",
                   }}
-                  className="absolute top-4 left-0 w-72 sm:w-80 scale-90 opacity-60 filter blur-[0.5px] cursor-pointer"
-                  onClick={prevCard}
+                  whileHover={{ scale: 0.92, rotate: -5 }}
+                  onClick={() => goToCard(0)}
+                  className="absolute top-8 left-0 w-64 sm:w-72 cursor-pointer"
                 >
-                  <CardPreview card={HERO_DEMO_CARDS[(currentIndex - 1 + HERO_DEMO_CARDS.length) % HERO_DEMO_CARDS.length]} isInteractive={false} />
+                  <div className="transform -rotate-6">
+                    <CardPreview card={HERO_DEMO_CARDS[0]} isInteractive={false} />
+                  </div>
                 </motion.div>
 
-                {/* Background Card (Next in sequence) */}
+                {/* Card 1 - Center/Active or Right */}
                 <motion.div
                   animate={{
-                    y: [8, -8, 8],
-                    rotate: [8, 4, 8],
+                    y: [0, 12, 0],
+                    rotate: currentIndex === 1 ? 0 : 6,
+                    x: currentIndex === 1 ? 0 : 30,
+                    opacity: currentIndex === 1 ? 1 : 0.6,
+                    scale: currentIndex === 1 ? 1.1 : 0.95,
+                    zIndex: currentIndex === 1 ? 30 : 10,
                   }}
                   transition={{
-                    duration: 6.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1,
+                    duration: 0.4,
+                    ease: "easeOut",
                   }}
-                  className="absolute top-2 right-0 w-72 sm:w-80 scale-95 opacity-80 cursor-pointer"
-                  onClick={nextCard}
+                  whileHover={{ scale: currentIndex === 1 ? 1.15 : 0.98 }}
+                  onClick={() => goToCard(1)}
+                  className="absolute top-0 left-1/2 -translate-x-1/2 w-64 sm:w-72 cursor-pointer"
                 >
-                  <CardPreview card={HERO_DEMO_CARDS[(currentIndex + 1) % HERO_DEMO_CARDS.length]} isInteractive={false} />
+                  <CardPreview card={HERO_DEMO_CARDS[1]} isInteractive={false} />
                 </motion.div>
 
-                {/* Foreground Primary Card */}
+                {/* Card 2 - Right/Back */}
                 <motion.div
                   animate={{
                     y: [-6, 6, -6],
-                    scale: [1, 1.02, 1],
+                    rotate: currentIndex === 2 ? 6 : 12,
+                    x: currentIndex === 2 ? 20 : 50,
+                    opacity: currentIndex === 2 ? 0.8 : 0.4,
+                    scale: currentIndex === 2 ? 0.95 : 0.85,
+                    zIndex: currentIndex === 2 ? 20 : 5,
                   }}
                   transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
+                    duration: 0.4,
+                    ease: "easeOut",
                   }}
-                  className="relative z-20 w-80 sm:w-88 shadow-[0_20px_50px_rgba(0,0,0,0.8)] cursor-pointer"
-                  onClick={nextCard}
+                  whileHover={{ scale: currentIndex === 2 ? 1.0 : 0.88 }}
+                  onClick={() => goToCard(2)}
+                  className="absolute top-12 right-0 w-64 sm:w-72 cursor-pointer"
                 >
-                  <CardPreview card={HERO_DEMO_CARDS[currentIndex]} isInteractive={false} />
-                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-rose-500/90 text-white text-[10px] font-bold px-3 py-1 rounded-full opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
-                    Click to preview
+                  <div className="transform rotate-6">
+                    <CardPreview card={HERO_DEMO_CARDS[2]} isInteractive={false} />
                   </div>
                 </motion.div>
+
               </div>
             </div>
 

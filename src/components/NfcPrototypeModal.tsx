@@ -12,8 +12,8 @@
  */
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Radio, X, CheckCircle2, Smartphone, Download, Sparkles, RefreshCw } from "lucide-react";
+import { motion } from "framer-motion";
+import { Radio, X, CheckCircle2, Smartphone, Sparkles, RefreshCw } from "lucide-react";
 import confetti from "canvas-confetti";
 import { CardPreview, CardData } from "./CardPreview";
 
@@ -34,12 +34,12 @@ const DEFAULT_NFC_DEMO_CARD: CardData = {
   instagram: "alexrivera.ui",
   linkedin: "alexrivera-product",
   website: "https://alexrivera.design",
-  mbti: "ENFP-A",
+  mbti: "INTJ-A",
   interests: "UI/UX, AI Agents, Coffee",
   favoriteSong: "Starboy - The Weeknd",
   favoriteMovie: "Inception",
-  theme: "midnight-glass",
-  primaryColor: "#a3e635",
+  theme: "sunset-gradient",
+  primaryColor: "#f43f5e",
 };
 
 export function NfcPrototypeModal({ onClose, demoCard = DEFAULT_NFC_DEMO_CARD }: NfcPrototypeModalProps) {
@@ -50,10 +50,10 @@ export function NfcPrototypeModal({ onClose, demoCard = DEFAULT_NFC_DEMO_CARD }:
     setTimeout(() => {
       setTapState("scanned");
       confetti({
-        particleCount: 70,
-        spread: 60,
+        particleCount: 80,
+        spread: 70,
         origin: { y: 0.6 },
-        colors: ["#a3e635", "#84cc16", "#ffffff"],
+        colors: ["#a855f7", "#f43f5e", "#f97316", "#ffffff"],
       });
     }, 1500);
   };
@@ -73,7 +73,7 @@ export function NfcPrototypeModal({ onClose, demoCard = DEFAULT_NFC_DEMO_CARD }:
         {/* Header */}
         <div className="flex items-center justify-between border-b border-slate-800/80 pb-4 mb-4">
           <div className="flex items-center gap-2">
-            <div className="p-2 rounded-xl bg-lime-500/10 border border-lime-500/30 text-lime-400">
+            <div className="p-2 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400">
               <Radio className="w-5 h-5 animate-pulse" />
             </div>
             <div>
@@ -94,10 +94,10 @@ export function NfcPrototypeModal({ onClose, demoCard = DEFAULT_NFC_DEMO_CARD }:
         </div>
 
         {/* Prototype Explanation Disclaimer */}
-        <div className="mb-6 p-3 rounded-xl bg-slate-900/90 border border-lime-500/20 text-xs text-slate-300 flex items-start gap-2.5">
-          <Sparkles className="w-4 h-4 text-lime-400 shrink-0 mt-0.5" />
+        <div className="mb-6 p-3 rounded-xl bg-slate-900/90 border border-rose-500/20 text-xs text-slate-300 flex items-start gap-2.5">
+          <Sparkles className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
           <div>
-            <span className="font-bold text-lime-400">Visual Prototype Notice: </span>
+            <span className="font-bold text-rose-400">Visual Prototype Notice: </span>
             This UI flow simulates a physical Cardora NFC card tapping a phone. Click the button below to trigger the simulated tap animation!
           </div>
         </div>
@@ -114,7 +114,7 @@ export function NfcPrototypeModal({ onClose, demoCard = DEFAULT_NFC_DEMO_CARD }:
                 
                 {/* Phone screen state */}
                 <div className="flex flex-col items-center justify-center text-center space-y-2">
-                  <Smartphone className={`w-8 h-8 ${tapState === "tapping" ? "text-lime-400 animate-bounce" : "text-slate-500"}`} />
+                  <Smartphone className={`w-8 h-8 ${tapState === "tapping" ? "text-rose-400 animate-bounce" : "text-slate-500"}`} />
                   <p className="text-[10px] text-slate-400 font-semibold">
                     {tapState === "tapping" ? "Reading NFC Signal..." : "Ready to Tap"}
                   </p>
@@ -131,14 +131,14 @@ export function NfcPrototypeModal({ onClose, demoCard = DEFAULT_NFC_DEMO_CARD }:
                     : { y: -70, rotate: -12 }
                 }
                 transition={{ duration: 1.2, ease: "easeInOut" }}
-                className="absolute top-4 w-40 h-24 rounded-2xl bg-gradient-to-r from-lime-400 via-lime-500 to-emerald-500 text-black p-3 shadow-2xl flex flex-col justify-between border border-white/40 cursor-pointer"
+                className="absolute top-4 w-40 h-24 rounded-2xl bg-gradient-to-r from-purple-600 via-rose-500 to-orange-500 text-white p-3 shadow-2xl flex flex-col justify-between border border-white/30 cursor-pointer"
                 onClick={handleSimulateTap}
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-black text-xs font-grotesk">CARDORA NFC</span>
-                  <Radio className="w-4 h-4 text-black animate-pulse" />
+                  <span className="font-black text-xs font-grotesk tracking-tight">CARDORA NFC</span>
+                  <Radio className="w-4 h-4 text-white animate-pulse" />
                 </div>
-                <div className="text-[10px] font-mono font-bold tracking-widest">
+                <div className="text-[10px] font-mono font-bold tracking-widest text-slate-100">
                   TAP PHYSICAL CARD
                 </div>
               </motion.div>
@@ -146,7 +146,7 @@ export function NfcPrototypeModal({ onClose, demoCard = DEFAULT_NFC_DEMO_CARD }:
               {/* Signal Waves on tap */}
               {tapState === "tapping" && (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-32 h-32 rounded-full border-2 border-lime-400 animate-ping opacity-75" />
+                  <div className="w-32 h-32 rounded-full border-2 border-rose-400 animate-ping opacity-75" />
                 </div>
               )}
             </div>
@@ -155,7 +155,7 @@ export function NfcPrototypeModal({ onClose, demoCard = DEFAULT_NFC_DEMO_CARD }:
             <button
               onClick={handleSimulateTap}
               disabled={tapState === "tapping"}
-              className="mt-6 w-full py-3.5 px-6 rounded-xl bg-lime-400 hover:bg-lime-300 text-black font-extrabold text-sm shadow-[0_0_20px_rgba(163,230,53,0.4)] transition-all active:scale-95 flex items-center justify-center gap-2"
+              className="mt-6 w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 hover:opacity-90 text-white font-extrabold text-sm shadow-[0_0_25px_rgba(244,63,94,0.4)] transition-all active:scale-95 flex items-center justify-center gap-2"
             >
               {tapState === "tapping" ? (
                 <>
@@ -179,7 +179,7 @@ export function NfcPrototypeModal({ onClose, demoCard = DEFAULT_NFC_DEMO_CARD }:
             animate={{ opacity: 1, y: 0 }}
             className="space-y-4"
           >
-            <div className="flex items-center justify-between bg-lime-500/10 border border-lime-500/30 p-3 rounded-2xl text-lime-400 text-xs font-bold">
+            <div className="flex items-center justify-between bg-rose-500/10 border border-rose-500/30 p-3 rounded-2xl text-rose-400 text-xs font-bold">
               <span className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4" />
                 NFC Transfer Successful! Card loaded.

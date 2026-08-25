@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { X, Lock, Mail, User, AlertCircle, ArrowRight } from "lucide-react";
+import { CardoraLogo } from "./CardoraLogo";
 
 interface AuthModalProps {
   mode?: "login" | "signup";
@@ -62,9 +63,9 @@ export function AuthModal({ mode: initialMode = "login", onClose, onSuccess }: A
         </button>
 
         {/* Modal Header */}
-        <div className="text-center mb-6">
-          <div className="w-12 h-12 rounded-2xl bg-lime-400 text-black flex items-center justify-center text-2xl font-black mx-auto mb-3 shadow-[0_0_20px_rgba(163,230,53,0.4)]">
-            C
+        <div className="text-center flex flex-col items-center mb-6">
+          <div className="mb-3">
+            <CardoraLogo size={48} showText={false} />
           </div>
           <h3 className="text-2xl font-extrabold font-grotesk tracking-tight">
             {mode === "login" ? "Welcome Back to Cardora" : "Create Your Account"}
@@ -94,7 +95,7 @@ export function AuthModal({ mode: initialMode = "login", onClose, onSuccess }: A
                   placeholder="John Doe"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full py-2.5 pl-10 pr-4 rounded-xl bg-slate-900 border border-slate-800 focus:border-lime-400 focus:outline-none text-xs text-white placeholder-slate-500"
+                  className="w-full py-2.5 pl-10 pr-4 rounded-xl bg-slate-900 border border-slate-800 focus:border-rose-500 focus:outline-none text-xs text-white placeholder-slate-500"
                 />
               </div>
             </div>
@@ -110,7 +111,7 @@ export function AuthModal({ mode: initialMode = "login", onClose, onSuccess }: A
                 placeholder="you@domain.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full py-2.5 pl-10 pr-4 rounded-xl bg-slate-900 border border-slate-800 focus:border-lime-400 focus:outline-none text-xs text-white placeholder-slate-500"
+                className="w-full py-2.5 pl-10 pr-4 rounded-xl bg-slate-900 border border-slate-800 focus:border-rose-500 focus:outline-none text-xs text-white placeholder-slate-500"
               />
             </div>
           </div>
@@ -125,7 +126,7 @@ export function AuthModal({ mode: initialMode = "login", onClose, onSuccess }: A
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full py-2.5 pl-10 pr-4 rounded-xl bg-slate-900 border border-slate-800 focus:border-lime-400 focus:outline-none text-xs text-white placeholder-slate-500"
+                className="w-full py-2.5 pl-10 pr-4 rounded-xl bg-slate-900 border border-slate-800 focus:border-rose-500 focus:outline-none text-xs text-white placeholder-slate-500"
               />
             </div>
           </div>
@@ -133,7 +134,7 @@ export function AuthModal({ mode: initialMode = "login", onClose, onSuccess }: A
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 px-4 rounded-xl bg-lime-400 hover:bg-lime-300 text-black font-extrabold text-xs sm:text-sm shadow-[0_0_20px_rgba(163,230,53,0.3)] transition-all active:scale-95 flex items-center justify-center gap-2"
+            className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 hover:opacity-90 text-white font-extrabold text-xs sm:text-sm shadow-[0_0_20px_rgba(244,63,94,0.35)] transition-all active:scale-95 flex items-center justify-center gap-2"
           >
             {loading ? "Processing..." : mode === "login" ? "Sign In" : "Create Account"}
             <ArrowRight className="w-4 h-4" />
@@ -150,7 +151,7 @@ export function AuthModal({ mode: initialMode = "login", onClose, onSuccess }: A
                   setMode("signup");
                   setError("");
                 }}
-                className="text-lime-400 font-bold hover:underline"
+                className="text-rose-400 font-bold hover:underline"
               >
                 Sign Up
               </button>
@@ -163,7 +164,7 @@ export function AuthModal({ mode: initialMode = "login", onClose, onSuccess }: A
                   setMode("login");
                   setError("");
                 }}
-                className="text-lime-400 font-bold hover:underline"
+                className="text-rose-400 font-bold hover:underline"
               >
                 Log In
               </button>

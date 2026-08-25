@@ -71,8 +71,8 @@ export async function POST(req: Request) {
         interests: data.interests || null,
         favoriteSong: data.favoriteSong || null,
         favoriteMovie: data.favoriteMovie || null,
-        theme: data.theme || "midnight-glass",
-        primaryColor: data.primaryColor || "#a3e635",
+        theme: data.theme || "sunset-gradient",
+        primaryColor: data.primaryColor || "#f43f5e",
       },
     });
 

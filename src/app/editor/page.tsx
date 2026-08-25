@@ -51,8 +51,8 @@ function EditorContent() {
     interests: "UI/UX, System Architecture, Coffee",
     favoriteSong: "Starboy - The Weeknd",
     favoriteMovie: "Interstellar",
-    theme: "midnight-glass",
-    primaryColor: "#a3e635",
+    theme: "sunset-gradient",
+    primaryColor: "#f43f5e",
   });
 
   useEffect(() => {
@@ -162,9 +162,9 @@ function EditorContent() {
 
       {/* Free Tier Limit Reached Banner */}
       {limitReached && (
-        <div className="mb-6 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs sm:text-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-lg">
+        <div className="mb-6 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs sm:text-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-lg">
           <div className="flex items-center gap-2.5">
-            <Lock className="w-5 h-5 text-amber-400 shrink-0" />
+            <Lock className="w-5 h-5 text-rose-400 shrink-0" />
             <div>
               <span className="font-bold">Free Plan Limit Reached: </span>
               Free accounts are limited to 1 card. Upgrade to Pro ($5/mo) for unlimited cards.
@@ -172,7 +172,7 @@ function EditorContent() {
           </div>
           <button
             onClick={handleUpgradeDemo}
-            className="px-4 py-2 rounded-xl bg-lime-400 text-black font-extrabold text-xs shrink-0 shadow-md hover:bg-lime-300 transition-all"
+            className="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 text-white font-extrabold text-xs shrink-0 shadow-md hover:opacity-90 transition-all"
           >
             Simulate Instant Upgrade ($5/mo)
           </button>
@@ -188,7 +188,7 @@ function EditorContent() {
       )}
 
       {successMsg && (
-        <div className="mb-6 p-3 rounded-xl bg-lime-500/10 border border-lime-500/30 text-lime-400 text-xs flex items-center gap-2">
+        <div className="mb-6 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4 shrink-0" />
           <span>{successMsg}</span>
         </div>
@@ -207,7 +207,7 @@ function EditorContent() {
               onClick={() => setActiveTab("basic")}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 activeTab === "basic"
-                  ? "bg-lime-400 text-black shadow-md"
+                  ? "bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 text-white shadow-md"
                   : "bg-slate-900 text-slate-400 hover:text-white"
               }`}
             >
@@ -218,7 +218,7 @@ function EditorContent() {
               onClick={() => setActiveTab("social")}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 activeTab === "social"
-                  ? "bg-lime-400 text-black shadow-md"
+                  ? "bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 text-white shadow-md"
                   : "bg-slate-900 text-slate-400 hover:text-white"
               }`}
             >
@@ -229,7 +229,7 @@ function EditorContent() {
               onClick={() => setActiveTab("more")}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 activeTab === "more"
-                  ? "bg-lime-400 text-black shadow-md"
+                  ? "bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 text-white shadow-md"
                   : "bg-slate-900 text-slate-400 hover:text-white"
               }`}
             >
@@ -240,7 +240,7 @@ function EditorContent() {
               onClick={() => setActiveTab("theme")}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 activeTab === "theme"
-                  ? "bg-lime-400 text-black shadow-md"
+                  ? "bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 text-white shadow-md"
                   : "bg-slate-900 text-slate-400 hover:text-white"
               }`}
             >
@@ -261,7 +261,7 @@ function EditorContent() {
                     placeholder="Alex Rivera"
                     value={formData.name}
                     onChange={(e) => handleChange("name", e.target.value)}
-                    className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                    className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                   />
                 </div>
 
@@ -274,7 +274,7 @@ function EditorContent() {
                       placeholder="Senior Designer or CS Student"
                       value={formData.title}
                       onChange={(e) => handleChange("title", e.target.value)}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                     />
                   </div>
 
@@ -283,7 +283,7 @@ function EditorContent() {
                     <select
                       value={formData.status}
                       onChange={(e) => handleChange("status", e.target.value)}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                     >
                       <option value="Professional">Professional</option>
                       <option value="Student">Student</option>
@@ -300,7 +300,7 @@ function EditorContent() {
                       placeholder="United States"
                       value={formData.country}
                       onChange={(e) => handleChange("country", e.target.value)}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                     />
                   </div>
 
@@ -311,7 +311,7 @@ function EditorContent() {
                       placeholder="https://images.unsplash.com/..."
                       value={formData.photoUrl || ""}
                       onChange={(e) => handleChange("photoUrl", e.target.value)}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                     />
                   </div>
                 </div>
@@ -323,7 +323,7 @@ function EditorContent() {
                     placeholder="Brief bio describing what you do..."
                     value={formData.bio}
                     onChange={(e) => handleChange("bio", e.target.value)}
-                    className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                    className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                   />
                 </div>
               </div>
@@ -339,7 +339,7 @@ function EditorContent() {
                     placeholder="https://yourwebsite.com"
                     value={formData.website || ""}
                     onChange={(e) => handleChange("website", e.target.value)}
-                    className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                    className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                   />
                 </div>
 
@@ -351,7 +351,7 @@ function EditorContent() {
                       placeholder="@username"
                       value={formData.instagram || ""}
                       onChange={(e) => handleChange("instagram", e.target.value)}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                     />
                   </div>
 
@@ -362,7 +362,7 @@ function EditorContent() {
                       placeholder="john-doe"
                       value={formData.linkedin || ""}
                       onChange={(e) => handleChange("linkedin", e.target.value)}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                     />
                   </div>
                 </div>
@@ -375,7 +375,7 @@ function EditorContent() {
                       placeholder="@username"
                       value={formData.tiktok || ""}
                       onChange={(e) => handleChange("tiktok", e.target.value)}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                     />
                   </div>
 
@@ -386,7 +386,7 @@ function EditorContent() {
                       placeholder="user#1234"
                       value={formData.discord || ""}
                       onChange={(e) => handleChange("discord", e.target.value)}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                     />
                   </div>
                 </div>
@@ -404,7 +404,7 @@ function EditorContent() {
                       placeholder="INTJ-A, ENFP, etc."
                       value={formData.mbti || ""}
                       onChange={(e) => handleChange("mbti", e.target.value)}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                     />
                   </div>
 
@@ -415,7 +415,7 @@ function EditorContent() {
                       placeholder="UI/UX, AI, Coffee, Gaming"
                       value={formData.interests || ""}
                       onChange={(e) => handleChange("interests", e.target.value)}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                     />
                   </div>
                 </div>
@@ -428,7 +428,7 @@ function EditorContent() {
                       placeholder="Starboy - The Weeknd"
                       value={formData.favoriteSong || ""}
                       onChange={(e) => handleChange("favoriteSong", e.target.value)}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                     />
                   </div>
 
@@ -439,7 +439,7 @@ function EditorContent() {
                       placeholder="Inception, Interstellar"
                       value={formData.favoriteMovie || ""}
                       onChange={(e) => handleChange("favoriteMovie", e.target.value)}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                      className="w-full py-2.5 px-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
                     />
                   </div>
                 </div>
@@ -458,14 +458,14 @@ function EditorContent() {
                       onClick={() => handleChange("theme", th.id)}
                       className={`p-4 rounded-2xl border text-left transition-all flex flex-col justify-between ${
                         formData.theme === th.id
-                          ? "border-lime-400 bg-lime-500/10 shadow-[0_0_15px_rgba(163,230,53,0.2)]"
+                          ? "border-rose-500 bg-rose-500/10 shadow-[0_0_20px_rgba(244,63,94,0.25)]"
                           : "border-slate-800 bg-slate-900 hover:border-slate-700"
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <span className="font-bold text-xs text-white font-grotesk">{th.name}</span>
                         {formData.theme === th.id && (
-                          <CheckCircle2 className="w-4 h-4 text-lime-400" />
+                          <CheckCircle2 className="w-4 h-4 text-rose-400" />
                         )}
                       </div>
                       <div className="mt-3 flex items-center gap-1.5">
@@ -483,7 +483,7 @@ function EditorContent() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-lime-400 hover:bg-lime-300 text-black font-extrabold text-xs sm:text-sm shadow-[0_0_20px_rgba(163,230,53,0.3)] transition-all active:scale-95 flex items-center justify-center gap-2 font-grotesk"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 hover:opacity-90 text-white font-extrabold text-xs sm:text-sm shadow-[0_0_20px_rgba(244,63,94,0.35)] transition-all active:scale-95 flex items-center justify-center gap-2 font-grotesk"
               >
                 <Save className="w-4 h-4" />
                 {loading ? "Saving Card..." : editId ? "Update Card" : "Save & Create Card"}
@@ -497,7 +497,7 @@ function EditorContent() {
         <div className="lg:col-span-5 sticky top-24 space-y-4">
           <div className="flex items-center justify-between px-2">
             <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5 font-grotesk">
-              <Sparkles className="w-3.5 h-3.5 text-lime-400 animate-pulse" />
+              <Sparkles className="w-3.5 h-3.5 text-rose-400 animate-pulse" />
               Live Instant Preview
             </span>
             <span className="text-[11px] text-slate-500">Updates dynamically as you edit</span>
@@ -516,11 +516,11 @@ function EditorContent() {
 
 export default function EditorPage() {
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col selection:bg-lime-400 selection:text-black">
+    <div className="min-h-screen bg-black text-white flex flex-col selection:bg-rose-500 selection:text-white">
       <Navbar />
       <Suspense fallback={
         <div className="flex-1 flex items-center justify-center py-24">
-          <div className="w-10 h-10 border-4 border-lime-400 border-t-transparent rounded-full animate-spin" />
+          <div className="w-10 h-10 border-4 border-rose-500 border-t-transparent rounded-full animate-spin" />
         </div>
       }>
         <EditorContent />

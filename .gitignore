@@ -17,3 +17,4 @@ dev.db-journal
 # IDE & OS
 .DS_Store
 *.pem
+.vercel

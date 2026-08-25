@@ -9,13 +9,10 @@ import {
   Share2,
   Download,
   MapPin,
-  Briefcase,
   Sparkles,
   Music,
   Film,
-  UserCheck,
   ExternalLink,
-  QrCode,
   Radio,
 } from "lucide-react";
 import { CARD_THEMES, ThemeDefinition } from "@/lib/themes";
@@ -64,7 +61,7 @@ export function CardPreview({
 }: CardPreviewProps) {
   const [showMoreAbout, setShowMoreAbout] = useState(false);
   const currentTheme: ThemeDefinition =
-    CARD_THEMES[card.theme || "midnight-glass"] || CARD_THEMES["midnight-glass"];
+    CARD_THEMES[card.theme || "sunset-gradient"] || CARD_THEMES["sunset-gradient"];
 
   const handleLink = (platform: string, rawUrl: string) => {
     if (!isInteractive) return;
@@ -97,11 +94,11 @@ export function CardPreview({
     >
       {/* Background ambient glow */}
       <div
-        className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl opacity-20 pointer-events-none"
+        className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl opacity-25 pointer-events-none"
         style={{ backgroundColor: currentTheme.accentColor }}
       />
       <div
-        className="absolute -bottom-24 -left-24 w-48 h-48 rounded-full blur-3xl opacity-20 pointer-events-none"
+        className="absolute -bottom-24 -left-24 w-48 h-48 rounded-full blur-3xl opacity-25 pointer-events-none"
         style={{ backgroundColor: currentTheme.accentColor }}
       />
 
@@ -116,8 +113,7 @@ export function CardPreview({
             />
           ) : (
             <div
-              className="w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center text-4xl font-extrabold text-black shadow-xl border-4 border-slate-800/80"
-              style={{ backgroundColor: currentTheme.accentColor }}
+              className="w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center text-4xl font-extrabold text-white shadow-xl border-4 border-slate-800/80 bg-gradient-to-tr from-purple-600 via-rose-500 to-orange-500"
             >
               {initialLetter}
             </div>
@@ -139,7 +135,7 @@ export function CardPreview({
 
         {/* Location / Country */}
         <div className="flex items-center gap-1.5 mt-2 text-xs sm:text-sm text-slate-400">
-          <MapPin className="w-3.5 h-3.5 text-lime-400" />
+          <MapPin className="w-3.5 h-3.5 text-rose-400" />
           <span>{card.country || "Global"}</span>
         </div>
 
@@ -159,7 +155,7 @@ export function CardPreview({
             className="w-full py-2.5 px-4 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/60 flex items-center justify-between text-xs sm:text-sm font-medium transition-all group/btn"
           >
             <div className="flex items-center gap-2.5">
-              <Globe className="w-4 h-4 text-lime-400" />
+              <Globe className="w-4 h-4 text-rose-400" />
               <span className="truncate max-w-[200px] sm:max-w-[240px]">
                 {card.website.replace(/^https?:\/\//, "")}
               </span>
@@ -195,7 +191,7 @@ export function CardPreview({
               onClick={() => handleLink("tiktok", card.tiktok!)}
               className="py-2.5 px-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800 flex items-center gap-2 text-xs font-medium transition-all"
             >
-              <span className="font-bold text-xs text-cyan-400 shrink-0">TT</span>
+              <span className="font-bold text-xs text-orange-400 shrink-0">TT</span>
               <span className="truncate">@{card.tiktok.replace(/^@/, "")}</span>
             </button>
           )}
@@ -220,7 +216,7 @@ export function CardPreview({
             className="w-full flex items-center justify-between text-xs font-semibold text-slate-400 hover:text-white transition-colors"
           >
             <span className="flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-lime-400" />
+              <Sparkles className="w-3.5 h-3.5 text-rose-400" />
               More About Me
             </span>
             <span>{showMoreAbout ? "▲" : "▼"}</span>
@@ -235,7 +231,7 @@ export function CardPreview({
               {card.mbti && (
                 <div className="flex items-center justify-between">
                   <span className="text-slate-400">MBTI Type:</span>
-                  <span className="font-bold text-lime-400">{card.mbti}</span>
+                  <span className="font-bold text-rose-400">{card.mbti}</span>
                 </div>
               )}
               {card.interests && (
@@ -252,7 +248,7 @@ export function CardPreview({
               )}
               {card.favoriteMovie && (
                 <div className="flex items-center gap-2">
-                  <Film className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                  <Film className="w-3.5 h-3.5 text-purple-400 shrink-0" />
                   <span className="truncate text-slate-200">{card.favoriteMovie}</span>
                 </div>
               )}
@@ -275,7 +271,7 @@ export function CardPreview({
           onClick={onShare}
           className="py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold flex items-center justify-center gap-2 text-xs sm:text-sm border border-slate-700 transition-all active:scale-95"
         >
-          <Share2 className="w-4 h-4 text-lime-400" />
+          <Share2 className="w-4 h-4 text-rose-400" />
           Share / QR
         </button>
       </div>
@@ -285,7 +281,7 @@ export function CardPreview({
         <div className="mt-4 pt-3 border-t border-slate-800/80 text-center relative z-10">
           <button
             onClick={onTriggerNfcDemo}
-            className="inline-flex items-center gap-1.5 text-[11px] font-bold text-lime-400 hover:text-lime-300 transition-colors"
+            className="inline-flex items-center gap-1.5 text-[11px] font-bold text-rose-400 hover:text-rose-300 transition-colors"
           >
             <Radio className="w-3.5 h-3.5 animate-pulse" />
             Simulate NFC Physical Card Tap

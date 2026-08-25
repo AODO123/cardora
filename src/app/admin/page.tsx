@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { CardoraLogo } from "@/components/CardoraLogo";
 import {
   Shield,
   Lock,
@@ -154,7 +155,7 @@ export default function AdminPage() {
       <div className="min-h-screen bg-black text-white flex flex-col justify-between">
         <Navbar />
         <div className="flex flex-col items-center justify-center py-24">
-          <div className="w-12 h-12 rounded-full border-4 border-lime-400 border-t-transparent animate-spin" />
+          <div className="w-12 h-12 rounded-full border-4 border-rose-500 border-t-transparent animate-spin" />
         </div>
         <Footer />
       </div>
@@ -164,14 +165,14 @@ export default function AdminPage() {
   // Admin Login Screen if not authenticated as Admin
   if (!admin) {
     return (
-      <div className="min-h-screen bg-black text-white flex flex-col justify-between selection:bg-lime-400 selection:text-black">
+      <div className="min-h-screen bg-black text-white flex flex-col justify-between selection:bg-rose-500 selection:text-white">
         <Navbar />
 
         <div className="flex-1 flex items-center justify-center p-4">
           <div className="w-full max-w-md bg-slate-950 border border-slate-800 rounded-3xl p-8 shadow-2xl space-y-6">
-            <div className="text-center space-y-2">
-              <div className="w-12 h-12 rounded-2xl bg-lime-400 text-black flex items-center justify-center mx-auto mb-2 shadow-[0_0_20px_rgba(163,230,53,0.4)]">
-                <Shield className="w-6 h-6" />
+            <div className="text-center space-y-2 flex flex-col items-center">
+              <div className="mb-2">
+                <CardoraLogo size={48} showText={false} />
               </div>
               <h2 className="text-2xl font-black font-grotesk tracking-tight">Admin Portal Login</h2>
               <p className="text-xs text-slate-400">Protected site owner authentication</p>
@@ -194,7 +195,7 @@ export default function AdminPage() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full py-2.5 pl-10 pr-4 rounded-xl bg-slate-900 border border-slate-800 focus:border-lime-400 focus:outline-none text-xs text-white"
+                    className="w-full py-2.5 pl-10 pr-4 rounded-xl bg-slate-900 border border-slate-800 focus:border-rose-500 focus:outline-none text-xs text-white"
                   />
                 </div>
               </div>
@@ -208,14 +209,14 @@ export default function AdminPage() {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full py-2.5 pl-10 pr-4 rounded-xl bg-slate-900 border border-slate-800 focus:border-lime-400 focus:outline-none text-xs text-white"
+                    className="w-full py-2.5 pl-10 pr-4 rounded-xl bg-slate-900 border border-slate-800 focus:border-rose-500 focus:outline-none text-xs text-white"
                   />
                 </div>
               </div>
 
               <button
                 type="submit"
-                className="w-full py-3 rounded-xl bg-lime-400 hover:bg-lime-300 text-black font-extrabold text-xs shadow-lg transition-all active:scale-95 font-grotesk"
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 hover:opacity-90 text-white font-extrabold text-xs shadow-lg transition-all active:scale-95 font-grotesk"
               >
                 Authenticate Admin Access
               </button>
@@ -229,14 +230,14 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col justify-between selection:bg-lime-400 selection:text-black">
+    <div className="min-h-screen bg-black text-white flex flex-col justify-between selection:bg-rose-500 selection:text-white">
       <Navbar />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
           <div className="flex items-center gap-3">
-            <div className="p-3 rounded-2xl bg-lime-500/10 border border-lime-500/30 text-lime-400">
+            <div className="p-3 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-400">
               <Shield className="w-6 h-6" />
             </div>
             <div>
@@ -258,7 +259,7 @@ export default function AdminPage() {
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
           <div className="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
             <div className="flex items-center gap-2 text-slate-400 text-xs font-medium mb-1">
-              <Users className="w-4 h-4 text-lime-400" />
+              <Users className="w-4 h-4 text-purple-400" />
               <span>Total Platform Users</span>
             </div>
             <p className="text-3xl font-black text-white font-grotesk">{stats.totalUsers}</p>
@@ -266,7 +267,7 @@ export default function AdminPage() {
 
           <div className="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
             <div className="flex items-center gap-2 text-slate-400 text-xs font-medium mb-1">
-              <CreditCard className="w-4 h-4 text-cyan-400" />
+              <CreditCard className="w-4 h-4 text-rose-400" />
               <span>Total Digital Cards</span>
             </div>
             <p className="text-3xl font-black text-white font-grotesk">{stats.totalCards}</p>
@@ -274,7 +275,7 @@ export default function AdminPage() {
 
           <div className="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
             <div className="flex items-center gap-2 text-slate-400 text-xs font-medium mb-1">
-              <Eye className="w-4 h-4 text-purple-400" />
+              <Eye className="w-4 h-4 text-orange-400" />
               <span>Total Card Views</span>
             </div>
             <p className="text-3xl font-black text-white font-grotesk">{stats.totalViews}</p>
@@ -282,7 +283,7 @@ export default function AdminPage() {
 
           <div className="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
             <div className="flex items-center gap-2 text-slate-400 text-xs font-medium mb-1">
-              <History className="w-4 h-4 text-rose-400" />
+              <History className="w-4 h-4 text-purple-400" />
               <span>Audit Log Entries</span>
             </div>
             <p className="text-3xl font-black text-white font-grotesk">{auditLogs.length}</p>
@@ -295,7 +296,7 @@ export default function AdminPage() {
             <button
               onClick={() => setActiveTab("cards")}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-                activeTab === "cards" ? "bg-lime-400 text-black shadow-md" : "text-slate-400 hover:text-white"
+                activeTab === "cards" ? "bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 text-white shadow-md" : "text-slate-400 hover:text-white"
               }`}
             >
               All User Cards ({cards.length})
@@ -303,7 +304,7 @@ export default function AdminPage() {
             <button
               onClick={() => setActiveTab("audit")}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                activeTab === "audit" ? "bg-lime-400 text-black shadow-md" : "text-slate-400 hover:text-white"
+                activeTab === "audit" ? "bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 text-white shadow-md" : "text-slate-400 hover:text-white"
               }`}
             >
               <History className="w-3.5 h-3.5" />
@@ -319,7 +320,7 @@ export default function AdminPage() {
                 placeholder="Search cards, users, titles..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full py-2 pl-10 pr-4 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-lime-400 focus:outline-none"
+                className="w-full py-2 pl-10 pr-4 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:border-rose-500 focus:outline-none"
               />
             </div>
           )}
@@ -354,7 +355,7 @@ export default function AdminPage() {
                             {c.photoUrl ? (
                               <img src={c.photoUrl} alt={c.name} className="w-9 h-9 rounded-full object-cover border border-slate-700" />
                             ) : (
-                              <div className="w-9 h-9 rounded-full bg-lime-400 text-black font-bold flex items-center justify-center">
+                              <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-purple-500 to-rose-500 text-white font-bold flex items-center justify-center">
                                 {c.name.charAt(0)}
                               </div>
                             )}
@@ -369,13 +370,13 @@ export default function AdminPage() {
                           {c.user?.email || "Unknown User"}
                         </td>
 
-                        <td className="p-4 font-mono text-lime-400">
+                        <td className="p-4 font-mono text-rose-400">
                           /c/{c.slug}
                         </td>
 
                         <td className="p-4">
                           <div className="text-xs font-semibold">
-                            <span className="text-lime-400">{c.views} views</span> • <span className="text-rose-400">{c.saves} saves</span>
+                            <span className="text-purple-400">{c.views} views</span> • <span className="text-orange-400">{c.saves} saves</span>
                           </div>
                         </td>
 
@@ -437,7 +438,7 @@ export default function AdminPage() {
                         <td className="p-3 text-slate-400 text-[11px]">
                           {new Date(log.createdAt).toLocaleString()}
                         </td>
-                        <td className="p-3 text-lime-400 font-bold">
+                        <td className="p-3 text-rose-400 font-bold">
                           {log.admin?.name || log.admin?.email || "Admin"}
                         </td>
                         <td className="p-3">
@@ -512,7 +513,7 @@ export default function AdminPage() {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-lime-400 text-black font-bold flex items-center gap-1.5"
+                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 text-white font-bold flex items-center gap-1.5"
                 >
                   <Save className="w-4 h-4" /> Save Changes
                 </button>

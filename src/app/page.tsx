@@ -32,8 +32,8 @@ const HERO_DEMO_CARDS: CardData[] = [
     instagram: "elena.design",
     linkedin: "elena-rostova",
     website: "https://elena.design",
-    theme: "lime-grotesk",
-    primaryColor: "#a3e635",
+    theme: "sunset-gradient",
+    primaryColor: "#f43f5e",
   },
   {
     name: "Marcus Chen",
@@ -44,8 +44,8 @@ const HERO_DEMO_CARDS: CardData[] = [
     linkedin: "marcuschen-ai",
     discord: "marcus_ai#1001",
     website: "https://chen.ai",
-    theme: "midnight-glass",
-    primaryColor: "#a3e635",
+    theme: "violet-glow",
+    primaryColor: "#a855f7",
   },
   {
     name: "Maya Lin",
@@ -55,8 +55,8 @@ const HERO_DEMO_CARDS: CardData[] = [
     bio: "Junior studying Computer Science & HCI. Passionate about mobile interfaces.",
     tiktok: "mayacodes",
     instagram: "maya.cs",
-    theme: "ocean-cyan",
-    primaryColor: "#22d3ee",
+    theme: "coral-fusion",
+    primaryColor: "#f97316",
   },
 ];
 
@@ -64,29 +64,30 @@ export default function LandingPage() {
   const [showNfcModal, setShowNfcModal] = useState(false);
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-lime-400 selection:text-black">
+    <div className="min-h-screen bg-black text-white selection:bg-rose-500 selection:text-white">
       <Navbar />
 
       {/* HERO SECTION — Dark, oversized grotesk headline, fanned animated cards */}
-      <section className="relative pt-12 pb-24 lg:pt-20 lg:pb-32 overflow-hidden bg-gradient-to-b from-black via-slate-950 to-zinc-900 border-b border-slate-800/80">
-        {/* Glow ambient spots */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-lime-500/10 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute top-10 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <section className="relative pt-12 pb-24 lg:pt-20 lg:pb-32 overflow-hidden bg-gradient-to-b from-black via-slate-950 to-zinc-950 border-b border-slate-800/80">
+        {/* Glow ambient spots matching logo */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-purple-600/15 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute top-10 right-10 w-96 h-96 bg-rose-500/15 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-10 left-10 w-80 h-80 bg-orange-500/15 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
             {/* Hero Left Content */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-400 text-xs font-bold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5 animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-purple-500/10 via-rose-500/10 to-orange-500/10 border border-rose-500/30 text-rose-400 text-xs font-bold uppercase tracking-wider">
+                <Sparkles className="w-3.5 h-3.5 animate-pulse text-rose-400" />
                 <span>Next-Gen Digital Business Cards</span>
               </div>
 
               {/* Bold Grotesk Headline */}
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black font-grotesk tracking-tight leading-[1.08] text-white">
                 YOUR IDENTITY. <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-lime-300 to-emerald-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-rose-400 to-orange-400">
                   YOUR CARD.
                 </span>
               </h1>
@@ -99,7 +100,7 @@ export default function LandingPage() {
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <Link
                   href="/editor"
-                  className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-lime-400 hover:bg-lime-300 text-black font-black text-sm sm:text-base shadow-[0_0_30px_rgba(163,230,53,0.35)] transition-all active:scale-95 flex items-center justify-center gap-2 font-grotesk"
+                  className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 hover:opacity-95 text-white font-black text-sm sm:text-base shadow-[0_0_35px_rgba(244,63,94,0.4)] transition-all active:scale-95 flex items-center justify-center gap-2 font-grotesk"
                 >
                   Create Your Free Card
                   <ArrowRight className="w-5 h-5" />
@@ -109,7 +110,7 @@ export default function LandingPage() {
                   onClick={() => setShowNfcModal(true)}
                   className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 transition-all active:scale-95"
                 >
-                  <Radio className="w-4 h-4 text-lime-400 animate-pulse" />
+                  <Radio className="w-4 h-4 text-rose-400 animate-pulse" />
                   Try NFC Tap Demo
                 </button>
               </div>
@@ -117,13 +118,13 @@ export default function LandingPage() {
               {/* Social Proof */}
               <div className="pt-4 flex items-center justify-center lg:justify-start gap-6 text-xs text-slate-400">
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-lime-400" /> Free 1 Card Forever
+                  <CheckCircle2 className="w-4 h-4 text-rose-400" /> Free 1 Card Forever
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-lime-400" /> vCard Export Included
+                  <CheckCircle2 className="w-4 h-4 text-rose-400" /> vCard Export Included
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-lime-400" /> Instant QR Code
+                  <CheckCircle2 className="w-4 h-4 text-rose-400" /> Instant QR Code
                 </span>
               </div>
             </div>
@@ -132,7 +133,7 @@ export default function LandingPage() {
             <div className="lg:col-span-5 relative flex items-center justify-center py-8">
               <div className="relative w-full max-w-sm sm:max-w-md h-[460px] flex items-center justify-center">
                 
-                {/* Background Card 3 (Maya Lin) - Parallax Tilt Left */}
+                {/* Background Card 3 (Maya Lin) */}
                 <motion.div
                   animate={{
                     y: [-8, 8, -8],
@@ -148,7 +149,7 @@ export default function LandingPage() {
                   <CardPreview card={HERO_DEMO_CARDS[2]} isInteractive={false} />
                 </motion.div>
 
-                {/* Background Card 2 (Marcus Chen) - Parallax Tilt Right */}
+                {/* Background Card 2 (Marcus Chen) */}
                 <motion.div
                   animate={{
                     y: [8, -8, 8],
@@ -165,7 +166,7 @@ export default function LandingPage() {
                   <CardPreview card={HERO_DEMO_CARDS[1]} isInteractive={false} />
                 </motion.div>
 
-                {/* Foreground Primary Card 1 (Elena Rostova) - Gentle Idle Float */}
+                {/* Foreground Primary Card 1 (Elena Rostova) */}
                 <motion.div
                   animate={{
                     y: [-6, 6, -6],
@@ -190,7 +191,7 @@ export default function LandingPage() {
       <section className="bg-slate-100 text-slate-900 py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-800">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-3.5 py-1 rounded-full bg-lime-400 text-black font-extrabold text-xs uppercase tracking-wider font-grotesk">
+            <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-purple-600 via-rose-500 to-orange-500 text-white font-extrabold text-xs uppercase tracking-wider font-grotesk shadow-md">
               Core Capabilities
             </span>
             <h2 className="text-3xl sm:text-5xl font-black font-grotesk tracking-tight">
@@ -205,7 +206,7 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Feature 1: Live Preview & Themes */}
             <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl space-y-4 hover:shadow-2xl transition-shadow">
-              <div className="w-12 h-12 rounded-2xl bg-black text-lime-400 flex items-center justify-center font-bold">
+              <div className="w-12 h-12 rounded-2xl bg-black text-rose-400 flex items-center justify-center font-bold">
                 <Layers className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold font-grotesk text-slate-900">Live Editor & Premium Themes</h3>
@@ -216,7 +217,7 @@ export default function LandingPage() {
 
             {/* Feature 2: Auto QR & Share Link */}
             <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl space-y-4 hover:shadow-2xl transition-shadow">
-              <div className="w-12 h-12 rounded-2xl bg-black text-lime-400 flex items-center justify-center font-bold">
+              <div className="w-12 h-12 rounded-2xl bg-black text-rose-400 flex items-center justify-center font-bold">
                 <QrCode className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold font-grotesk text-slate-900">Dynamic QR & vCard Export</h3>
@@ -227,7 +228,7 @@ export default function LandingPage() {
 
             {/* Feature 3: Real-Time Analytics */}
             <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl space-y-4 hover:shadow-2xl transition-shadow">
-              <div className="w-12 h-12 rounded-2xl bg-black text-lime-400 flex items-center justify-center font-bold">
+              <div className="w-12 h-12 rounded-2xl bg-black text-rose-400 flex items-center justify-center font-bold">
                 <TrendingUp className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold font-grotesk text-slate-900">Engagement Analytics</h3>
@@ -264,19 +265,19 @@ export default function LandingPage() {
 
                 <ul className="mt-6 space-y-3 text-sm text-slate-300">
                   <li className="flex items-center gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-lime-400 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-rose-400 shrink-0" />
                     <span>1 Digital Card per Account</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-lime-400 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-rose-400 shrink-0" />
                     <span>Custom Shareable Link & QR Code</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-lime-400 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-rose-400 shrink-0" />
                     <span>vCard Contact Download (.vcf)</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-lime-400 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-rose-400 shrink-0" />
                     <span>Basic View Counter</span>
                   </li>
                 </ul>
@@ -291,13 +292,13 @@ export default function LandingPage() {
             </div>
 
             {/* Paid Tier: $5/mo */}
-            <div className="bg-gradient-to-b from-slate-900 via-zinc-900 to-black border-2 border-lime-400 rounded-3xl p-8 flex flex-col justify-between space-y-6 relative shadow-[0_0_35px_rgba(163,230,53,0.2)]">
-              <div className="absolute -top-3.5 right-6 px-3 py-1 rounded-full bg-lime-400 text-black font-extrabold text-[10px] uppercase tracking-wider font-grotesk">
+            <div className="bg-gradient-to-b from-slate-900 via-zinc-950 to-black border-2 border-rose-500 rounded-3xl p-8 flex flex-col justify-between space-y-6 relative shadow-[0_0_35px_rgba(244,63,94,0.25)]">
+              <div className="absolute -top-3.5 right-6 px-3 py-1 rounded-full bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 text-white font-extrabold text-[10px] uppercase tracking-wider font-grotesk shadow-md">
                 Most Popular
               </div>
 
               <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-lime-400 mb-2">Pro Tier</div>
+                <div className="text-xs font-bold uppercase tracking-widest text-rose-400 mb-2">Pro Tier</div>
                 <div className="flex items-baseline gap-2">
                   <span className="text-4xl sm:text-5xl font-black font-grotesk text-white">$5</span>
                   <span className="text-slate-400 text-sm">/ month</span>
@@ -306,19 +307,19 @@ export default function LandingPage() {
 
                 <ul className="mt-6 space-y-3 text-sm text-slate-200">
                   <li className="flex items-center gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-lime-400 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-rose-400 shrink-0" />
                     <span className="font-bold text-white">Unlimited Digital Cards</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-lime-400 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-rose-400 shrink-0" />
                     <span>All 5 Premium Themes & Custom Colors</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-lime-400 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-rose-400 shrink-0" />
                     <span>Advanced Analytics (Clicks & Saves)</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-lime-400 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-rose-400 shrink-0" />
                     <span>NFC Tap Simulation Prototype Feature</span>
                   </li>
                 </ul>
@@ -326,7 +327,7 @@ export default function LandingPage() {
 
               <Link
                 href="/editor"
-                className="w-full py-3.5 rounded-xl bg-lime-400 hover:bg-lime-300 text-black font-black text-center text-sm shadow-lg transition-all"
+                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 hover:opacity-90 text-white font-black text-center text-sm shadow-lg transition-all"
               >
                 Upgrade to Pro ($5/mo)
               </Link>

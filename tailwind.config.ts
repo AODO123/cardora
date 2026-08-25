@@ -9,18 +9,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        lime: {
-          400: "#a3e635",
-          500: "#84cc16",
-          accent: "#ccff00",
-        },
         cardora: {
           black: "#0b0c10",
           dark: "#12141c",
           cardDark: "#181a24",
           border: "#2a2d3d",
-          accent: "#a3e635",
+          accent: "#f43f5e",
+          purple: "#a855f7",
+          rose: "#f43f5e",
+          orange: "#f97316",
         },
+        sunset: {
+          purple: "#8b5cf6",
+          rose: "#f43f5e",
+          orange: "#f97316",
+          coral: "#ff5e00",
+        }
       },
       fontFamily: {
         grotesk: ["Plus Jakarta Sans", "Inter", "sans-serif"],

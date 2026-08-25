@@ -17,9 +17,6 @@ import {
   Copy,
   Check,
   CreditCard,
-  Sparkles,
-  TrendingUp,
-  Radio,
   Lock,
 } from "lucide-react";
 import { CardData } from "@/components/CardPreview";
@@ -106,7 +103,7 @@ export default function DashboardPage() {
       <div className="min-h-screen bg-black text-white flex flex-col justify-between">
         <Navbar />
         <div className="flex flex-col items-center justify-center py-24">
-          <div className="w-12 h-12 rounded-full border-4 border-lime-400 border-t-transparent animate-spin" />
+          <div className="w-12 h-12 rounded-full border-4 border-rose-500 border-t-transparent animate-spin" />
         </div>
         <Footer />
       </div>
@@ -118,14 +115,14 @@ export default function DashboardPage() {
       <div className="min-h-screen bg-black text-white flex flex-col justify-between">
         <Navbar />
         <div className="flex flex-col items-center justify-center py-24 px-4 text-center space-y-4 max-w-md mx-auto">
-          <Lock className="w-12 h-12 text-lime-400" />
+          <Lock className="w-12 h-12 text-rose-400" />
           <h2 className="text-3xl font-black font-grotesk">Login Required</h2>
           <p className="text-xs text-slate-400">
             Please log in or sign up to access your digital business cards and analytics.
           </p>
           <button
             onClick={() => setShowAuthModal(true)}
-            className="px-8 py-3 rounded-xl bg-lime-400 text-black font-extrabold text-xs shadow-lg hover:bg-lime-300 transition-all"
+            className="px-8 py-3 rounded-xl bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 text-white font-extrabold text-xs shadow-lg hover:opacity-90 transition-all"
           >
             Log In / Sign Up
           </button>
@@ -147,7 +144,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col justify-between selection:bg-lime-400 selection:text-black">
+    <div className="min-h-screen bg-black text-white flex flex-col justify-between selection:bg-rose-500 selection:text-white">
       <Navbar />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
@@ -166,13 +163,13 @@ export default function DashboardPage() {
           <div className="flex items-center gap-3 bg-slate-900 border border-slate-800 p-2.5 rounded-2xl">
             <div>
               <div className="text-[10px] uppercase font-bold text-slate-400">Current Plan</div>
-              <div className="text-xs font-black text-lime-400 font-grotesk">
+              <div className="text-xs font-black text-rose-400 font-grotesk">
                 {user.plan === "PAID" ? "PRO UNLIMITED ($5/mo)" : "FREE TIER (1 Card)"}
               </div>
             </div>
             <button
               onClick={handleTogglePlan}
-              className="px-3 py-1.5 rounded-xl bg-lime-400 hover:bg-lime-300 text-black font-bold text-xs shadow-md transition-all"
+              className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 hover:opacity-90 text-white font-bold text-xs shadow-md transition-all"
             >
               {user.plan === "PAID" ? "Switch to Free" : "Upgrade to Pro ($5/mo)"}
             </button>
@@ -195,7 +192,7 @@ export default function DashboardPage() {
 
             <Link
               href="/editor"
-              className="px-4 py-2.5 rounded-xl bg-lime-400 hover:bg-lime-300 text-black font-extrabold text-xs shadow-[0_0_15px_rgba(163,230,53,0.3)] transition-all flex items-center gap-1.5"
+              className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 hover:opacity-90 text-white font-extrabold text-xs shadow-[0_0_20px_rgba(244,63,94,0.35)] transition-all flex items-center gap-1.5"
             >
               <PlusCircle className="w-4 h-4" />
               Create New Card
@@ -211,7 +208,7 @@ export default function DashboardPage() {
               </p>
               <Link
                 href="/editor"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-lime-400 text-black font-bold text-xs shadow-lg hover:bg-lime-300 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 via-rose-500 to-orange-500 text-white font-bold text-xs shadow-lg hover:opacity-90 transition-all"
               >
                 <PlusCircle className="w-4 h-4" />
                 Create Card Now
@@ -226,7 +223,7 @@ export default function DashboardPage() {
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="px-2.5 py-0.5 rounded-full bg-lime-500/10 border border-lime-500/30 text-lime-400 text-[10px] font-bold uppercase tracking-wider">
+                      <span className="px-2.5 py-0.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-[10px] font-bold uppercase tracking-wider">
                         {c.status}
                       </span>
                       <span className="text-[11px] text-slate-500 font-mono">/c/{c.slug}</span>
@@ -236,7 +233,7 @@ export default function DashboardPage() {
                       {c.photoUrl ? (
                         <img src={c.photoUrl} alt={c.name} className="w-12 h-12 rounded-full object-cover border border-slate-700" />
                       ) : (
-                        <div className="w-12 h-12 rounded-full bg-lime-400 text-black font-bold text-xl flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-purple-600 to-rose-500 text-white font-bold text-xl flex items-center justify-center">
                           {c.name.charAt(0)}
                         </div>
                       )}
@@ -250,15 +247,15 @@ export default function DashboardPage() {
                     <div className="grid grid-cols-3 gap-2 bg-slate-900/80 p-2.5 rounded-2xl text-center text-[11px]">
                       <div>
                         <span className="block text-slate-400 font-medium">Views</span>
-                        <span className="font-bold text-lime-400">{c.views || 0}</span>
+                        <span className="font-bold text-purple-400">{c.views || 0}</span>
                       </div>
                       <div>
                         <span className="block text-slate-400 font-medium">Clicks</span>
-                        <span className="font-bold text-cyan-400">{c.linkClicks || 0}</span>
+                        <span className="font-bold text-rose-400">{c.linkClicks || 0}</span>
                       </div>
                       <div>
                         <span className="block text-slate-400 font-medium">Saves</span>
-                        <span className="font-bold text-rose-400">{c.saves || 0}</span>
+                        <span className="font-bold text-orange-400">{c.saves || 0}</span>
                       </div>
                     </div>
                   </div>
@@ -271,7 +268,7 @@ export default function DashboardPage() {
                       title="View Public Card"
                       className="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 flex items-center justify-center transition-colors"
                     >
-                      <ExternalLink className="w-4 h-4 text-lime-400" />
+                      <ExternalLink className="w-4 h-4 text-rose-400" />
                     </Link>
 
                     <button
@@ -279,7 +276,7 @@ export default function DashboardPage() {
                       title="Copy Public Link"
                       className="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 flex items-center justify-center transition-colors"
                     >
-                      {copiedId === c.id ? <Check className="w-4 h-4 text-lime-400" /> : <Copy className="w-4 h-4" />}
+                      {copiedId === c.id ? <Check className="w-4 h-4 text-rose-400" /> : <Copy className="w-4 h-4" />}
                     </button>
 
                     <button
@@ -287,7 +284,7 @@ export default function DashboardPage() {
                       title="Show QR Code"
                       className="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 flex items-center justify-center transition-colors"
                     >
-                      <QrCode className="w-4 h-4 text-cyan-400" />
+                      <QrCode className="w-4 h-4 text-purple-400" />
                     </button>
 
                     <button
@@ -295,7 +292,7 @@ export default function DashboardPage() {
                       title="Edit Card"
                       className="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 flex items-center justify-center transition-colors"
                     >
-                      <Edit className="w-4 h-4 text-purple-400" />
+                      <Edit className="w-4 h-4 text-orange-400" />
                     </button>
                   </div>
                 </div>

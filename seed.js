@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const db = new PrismaClient();
 
 async function main() {
-  console.log("Seeding Cardora database...");
+  console.log("Seeding Cardora database with new logo theme...");
 
   // 1. Create Admin User
   const adminPasswordHash = await bcrypt.hash("admin12345", 10);
@@ -19,7 +19,6 @@ async function main() {
       role: "ADMIN",
     },
   });
-  console.log("Created Admin:", admin.email);
 
   // 2. Create Demo User
   const userPasswordHash = await bcrypt.hash("password123", 10);
@@ -34,7 +33,6 @@ async function main() {
       role: "USER",
     },
   });
-  console.log("Created Demo User:", demoUser.email);
 
   // 3. Create Seed Cards
   const cards = [
@@ -54,8 +52,8 @@ async function main() {
       interests: "UI/UX, System Architecture, Coffee",
       favoriteSong: "Starboy - The Weeknd",
       favoriteMovie: "Interstellar",
-      theme: "midnight-glass",
-      primaryColor: "#a3e635",
+      theme: "sunset-gradient",
+      primaryColor: "#f43f5e",
       views: 142,
       linkClicks: 38,
       saves: 19,
@@ -76,8 +74,8 @@ async function main() {
       interests: "Design Systems, Motion Graphics",
       favoriteSong: "Blinding Lights - The Weeknd",
       favoriteMovie: "Blade Runner 2049",
-      theme: "lime-grotesk",
-      primaryColor: "#a3e635",
+      theme: "violet-glow",
+      primaryColor: "#a855f7",
       views: 98,
       linkClicks: 24,
       saves: 12,
@@ -96,12 +94,12 @@ async function main() {
   await db.auditLog.create({
     data: {
       adminId: admin.id,
-      action: "SYSTEM_INITIALIZATION",
-      details: "Cardora platform database initialized and seeded with admin credentials and demo cards.",
+      action: "SYSTEM_THEME_UPDATE",
+      details: "Cardora logo updated and site palette converted to Purple-Rose-Orange Sunset Theme.",
     },
   });
 
-  console.log("Database seeding completed successfully!");
+  console.log("Database seeding with new theme completed successfully!");
 }
 
 main()

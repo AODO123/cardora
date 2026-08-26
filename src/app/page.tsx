@@ -171,7 +171,7 @@ export default function LandingPage() {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="absolute top-4 left-0 w-72 sm:w-80 pointer-events-none scale-90 opacity-60 filter blur-[2px]"
+                  className="absolute top-4 left-0 w-72 sm:w-80 cursor-pointer scale-90 opacity-50 filter blur-[2px] pointer-events-none"
                 >
                   <CardPreview card={HERO_DEMO_CARDS[(currentIndex - 1 + HERO_DEMO_CARDS.length) % HERO_DEMO_CARDS.length]} isInteractive={false} />
                 </motion.div>
@@ -188,7 +188,7 @@ export default function LandingPage() {
                     ease: "easeInOut",
                     delay: 1,
                   }}
-                  className="absolute top-2 right-0 w-72 sm:w-80 pointer-events-none scale-90 opacity-60 filter blur-[2px]"
+                  className="absolute top-2 right-0 w-72 sm:w-80 cursor-pointer scale-95 opacity-70 filter blur-[2px] pointer-events-none"
                 >
                   <CardPreview card={HERO_DEMO_CARDS[(currentIndex + 1) % HERO_DEMO_CARDS.length]} isInteractive={false} />
                 </motion.div>
@@ -203,7 +203,7 @@ export default function LandingPage() {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="relative z-20 w-80 sm:w-88 shadow-[0_20px_50px_rgba(0,0,0,0.8)] cursor-pointer filter blur-[2px]"
+                  className="relative z-20 w-80 sm:w-88 shadow-[0_20px_50px_rgba(0,0,0,0.8)] cursor-pointer"
                   onClick={nextCard}
                 >
                   <CardPreview card={HERO_DEMO_CARDS[currentIndex]} isInteractive={false} />

@@ -291,7 +291,7 @@ export default function SettingsPage() {
                     type="file"
                     accept="image/*"
                     className="hidden"
-                    onChange={(e) => handlePhotoUpload(e.target.files?.[0])}
+                    onChange={(e) => { if (e.target.files?.[0]) handlePhotoUpload(e.target.files[0]); }}
                   />
                   <button
                     onClick={() => photoInputRef.current?.click()}
